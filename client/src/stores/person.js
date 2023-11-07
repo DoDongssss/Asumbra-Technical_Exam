@@ -17,6 +17,7 @@ export const usePersonsStore = defineStore("persons", {
       Date_registered: new Date().toISOString().substr(0, 10),
     }),
     personsModalStatus: ref(false),
+    personModalTitle: ref("Create Person"),
     personsErrors: ref([]),
     personsLoading: ref(false),
   }),
@@ -24,6 +25,7 @@ export const usePersonsStore = defineStore("persons", {
     data: (state) => state.personsData,
     formModal: (state) => state.personsFormModal,
     modalStatus: (state) => state.personsModalStatus,
+    modalTitle: (state) => state.personModalTitle,
     errors: (state) => state.personsErrors,
     loading: (state) => state.personsLoading,
   },
@@ -147,11 +149,12 @@ export const usePersonsStore = defineStore("persons", {
     async modalToggle(data) {
       this.personsModalStatus = !this.personsModalStatus;
       this.personsErrors = [];
+      this.personModalTitle = "Create Person";
 
       this.resetInput();
 
       if (data != undefined) {
-        console.log(data);
+        this.personModalTitle = "Update Person";
 
         const birthday = data.Birthday;
         const date_registered = data.Date_registered;

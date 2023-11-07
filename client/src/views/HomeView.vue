@@ -94,7 +94,7 @@
   <!-- MODAL -->
   <el-dialog
     v-model="personsStore.personsModalStatus"
-    title="Create Person"
+    :title="personsStore.modalTitle"
     center
   >
     <div class="w-full h-full flex flex-col">
